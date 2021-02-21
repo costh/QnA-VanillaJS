@@ -19,13 +19,13 @@ export const buildAnswerFragments = async (qid) => {
 	  <article class="card">
 	  	<div class="card-body">
 		  <h1 class="card-title"> ${question.title} </h1>
-		  <span>Posted by  ${question.firstName} ${question.lastName} </span>
+			<span>Posted by  ${question.firstName} ${question.lastName} on 		 
+			 <span class="text-muted"> ${ new Date(question.timeStamp).toLocaleDateString()} </span>
+		  </span>
 		  <p class="card-text"> ${question.content} </h1>
-		  <span> ${question.firstName} ${question.lastName} </span>
-		  <span> ${question.timeStamp} </span>
 		</div>
 	  </article>
-	  <div id="answersContainer">
+	  <div id="answersContainer" class="list-group">
 
 	  <div>
 	`
@@ -34,15 +34,17 @@ export const buildAnswerFragments = async (qid) => {
 	const answerContainer = answerFragment.getElementById("answersContainer");
 
 	answers.forEach(answers => {
-		const template = document.createElement('template')
-		template.innerHTML = `
-		  <article class="answer">
-			  <p> ${answers.content} </h1>
-			  <span> ${answers.firstName} ${answers.lastName} </span>
-			  <span> ${answers.timeStamp} </span>
+		const tpl = document.createElement('template')
+		tpl.innerHTML = `
+		  <article class="list-group-item ">
+			<p class="mb-1">${answers.content}</p>
+			<div class="d-flex w-80 justify-content-between">
+				<small class="text-muted"> ${answers.firstName} ${answers.lastName}</small>
+				<small class="text-muted">${new Date(answers.timeStamp).toLocaleDateString()}</small>
+			</div>
 		  </article>
 		`
-		answerContainer.appendChild(template.content.cloneNode(true));
+		answerContainer.appendChild(tpl.content.cloneNode(true));
 	});
 
 

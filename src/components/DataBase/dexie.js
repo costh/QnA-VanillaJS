@@ -42,13 +42,13 @@ class Database extends Dexie {
     const questionTableCount = await this.questions.count();
     if(questionTableCount >= 1) return;
 
-    this.questions.add(getQuestionObj("My First Question", "Why is the earth round?", "Hayden", "Costa"));
-    this.answers.add(getAnswerObject(1,"My Content lalalala", "Max", "Loch"))
-    this.answers.add(getAnswerObject(1,"My Content hsjkadhkjsa", "Matt", "Jenkins"))
+    this.questions.add(getQuestionObj("Hello World", "Why is the earth round?", "Hayden", "Costa"));
+    this.answers.add(getAnswerObject(1,"Random answer here", "Max", "Loch"))
+    this.answers.add(getAnswerObject(1,"this is a really cool question", "Matt", "Jenkins"))
 
-    this.questions.add(getQuestionObj("My second Question 2", "Why is the earth square?", "Lynod", "Verse"));
+    this.questions.add(getQuestionObj("My second Question", "Why is the earth square?", "Lynod", "Verse"));
     this.answers.add(getAnswerObject(2, "My Content lalalala", "Max", "Loch"));
-    this.answers.add(getAnswerObject(2,"My friend", "Matt", "Jenkins"));
+    this.answers.add(getAnswerObject(2,"This is not a great question", "Matt", "Jenkins"));
   }
 
   async addQuestion(title='', message = '', firstName = '', lastName = '') {
@@ -58,7 +58,7 @@ class Database extends Dexie {
   async addAnswer(questionId, message, firstName, lastName) {
     const qid = parseInt(questionId);
     const isQuestionAvailable = await this.questions.get(qid);
-    console.log(isQuestionAvailable)
+
     if(isQuestionAvailable) {
       return this.answers.add(getAnswerObject(qid, message, firstName, lastName));
     }
@@ -71,6 +71,7 @@ class Database extends Dexie {
   async getAllAnswersforQuestion(id) {
     const getQuestion = await this.questions.get(parseInt(id));
     const getAnswer = await this.answers.where({"questionId":parseInt(id)}).toArray();
+
     return {
       question: getQuestion,
       answers: getAnswer
