@@ -1,8 +1,10 @@
 const Header = () => {
 	const template = `
-    <header>
-      <h1>Welcome to this Question and Answer Blog</h1>
-    </header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="">
+      <a class="navbar-brand" href="/">Random Q and A</a>
+    </div>
+  </nav>
   `;
 
 	return template;

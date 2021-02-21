@@ -1,9 +1,8 @@
 let { Dexie } = require('dexie');
 
-const getAnswerObject = (id, title, content, firstName, lastName) => {
+const getAnswerObject = (id, content, firstName, lastName) => {
   return { 
     questionId: id,
-    title: title,
     content: content, 
     firstName: firstName,  
     lastName: lastName, 
@@ -44,23 +43,24 @@ class Database extends Dexie {
     if(questionTableCount >= 1) return;
 
     this.questions.add(getQuestionObj("My First Question", "Why is the earth round?", "Hayden", "Costa"));
-    this.answers.add(getAnswerObject(1,"My Content", "My Content lalalala", "Max", "Loch"))
-    this.answers.add(getAnswerObject(1,"My Content2", "My Content hsjkadhkjsa", "Matt", "Jenkins"))
+    this.answers.add(getAnswerObject(1,"My Content lalalala", "Max", "Loch"))
+    this.answers.add(getAnswerObject(1,"My Content hsjkadhkjsa", "Matt", "Jenkins"))
 
     this.questions.add(getQuestionObj("My second Question 2", "Why is the earth square?", "Lynod", "Verse"));
-    this.answers.add(getAnswerObject(2,"Hello", "My Content lalalala", "Max", "Loch"))
-    this.answers.add(getAnswerObject(2,"My friend", "My Content hsjkadhkjsa", "Matt", "Jenkins"))
+    this.answers.add(getAnswerObject(2, "My Content lalalala", "Max", "Loch"));
+    this.answers.add(getAnswerObject(2,"My friend", "Matt", "Jenkins"));
   }
 
   async addQuestion(title='', message = '', firstName = '', lastName = '') {
     return this.questions.add(getQuestionObj(title, message, firstName, lastName));
   }
 
-  async addAnswer(questionId, title, message, firstName, lastName) {
-    const isQuestionAvailable = await this.questions.get(questionId);
-
+  async addAnswer(questionId, message, firstName, lastName) {
+    const qid = parseInt(questionId);
+    const isQuestionAvailable = await this.questions.get(qid);
+    console.log(isQuestionAvailable)
     if(isQuestionAvailable) {
-      return this.answers.add(getAnswerObject(questionId, title, message, firstName, lastName));
+      return this.answers.add(getAnswerObject(qid, message, firstName, lastName));
     }
   }
 
@@ -68,9 +68,13 @@ class Database extends Dexie {
     return this.questions.orderBy('timeStamp').reverse().toArray();
   }
 
-  async getAllAnswers(id) {
-    // TODO: return a promise, can just return the answers instead
-    return this.answers.where({questionId:id}).toArray();
+  async getAllAnswersforQuestion(id) {
+    const getQuestion = await this.questions.get(parseInt(id));
+    const getAnswer = await this.answers.where({"questionId":parseInt(id)}).toArray();
+    return {
+      question: getQuestion,
+      answers: getAnswer
+    }
   }
 
 }
