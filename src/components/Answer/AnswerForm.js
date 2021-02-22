@@ -1,12 +1,12 @@
 import { saveAnswer } from "../Utils/apiInterface";
-import Answer, { reRenderAnswers } from "./Answer";
+import { reRenderAnswers } from "./Answer";
 
 export const buildAnswerForm = (questionId) => {
 	const template = document.createElement('template')
 	template.innerHTML = `
 	<form id="answerForm" action="" method="get" class="row g-3" >
 		<header>
-			<h1> Reply to this Question<h1>
+			<h1 class="h3"> Reply to this Question<h1>
 		</header>
 		<input name="questionId" value="${questionId}" type="hidden">
 		<div class="col-md-6">

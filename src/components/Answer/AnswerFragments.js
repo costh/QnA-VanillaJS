@@ -8,7 +8,7 @@ export const buildQuestionFragment = async (question) => {
 	template.innerHTML = `
 	  <article class="card">
 	  	<div class="card-body">
-			<h1 class="card-title"> ${question.title} </h1>
+			<h1 class="card-title display-3"> ${question.title} </h1>
 			  
 			<div class="d-flex w-80">
 		 	 <span> ${question.firstName} ${question.lastName}, <small class="text-muted">${new Date(question.timeStamp).toLocaleString() }</small> </span>
@@ -29,9 +29,12 @@ export const buildAnswerFragment = async (answerArray) => {
 	const answerContainerEl = document.getElementById("answersContainer");
 	
 	const answerDocFrag = new DocumentFragment();
+	const tpl = document.createElement('template')
+
+	tpl.innerHTML = `<span class="h5"> ${answerArray.length} Answer${ (answerArray.length === 1) ? '' : 's'} </span>`
+	answerDocFrag.appendChild(tpl.content.cloneNode(true));
 
 	answerArray.forEach(answers => {
-		const tpl = document.createElement('template')
 		tpl.innerHTML = `
 		  <article class="list-group-item ">
 			<p class="mb-1">${answers.content}</p>
