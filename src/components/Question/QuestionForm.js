@@ -5,21 +5,24 @@ export const buildQuestionForm = (questionParent) => {
 	const template = document.createElement('template')
 	template.innerHTML = `
 	<form id="questionForm" action="" method="get" class="row g-3">
+		<header>
+		 	<h1> Post your question <h1>
+		</header>
 		<div class="col-md-6">
-			<label class="form-label" for="firstName">Enter your firstname: </label>
-			<input class="form-control" type="text" name="firstName" id="name" required>
+			<label class="form-label" for="firstName">Enter your first name: </label>
+			<input class="form-control" type="text" name="firstName" id="name" required aria-required="true">
 		</div>
 		<div class="col-md-6">
-			<label class="form-label" for="lastName">Enter your lastName: </label>
-			<input class="form-control" type="text" name="lastName" required>
+			<label class="form-label" for="lastName">Enter your last name: </label>
+			<input class="form-control" type="text" name="lastName" required aria-required="true">
 		</div>
 		<div class="col-md-8">
 			<label class="form-label" for="title">Title: </label>
-			<input class="form-control" type="text" name="title" required>
+			<input class="form-control" type="text" name="title" required aria-required="true">
 		</div>
 		<div class="col-md-8">
 			<label class="form-label" for="content">Content: </label>
-			<textarea class="form-control" cols="80" rows ="5" name="content" required></textarea>
+			<textarea class="form-control" cols="80" rows ="5" name="content" required aria-required="true"></textarea>
 		</div>
 		<div class="">
 			<input class="btn btn-primary" type="submit" value="Ask Question!">
