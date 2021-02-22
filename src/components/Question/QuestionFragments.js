@@ -1,11 +1,10 @@
 import { getAllQuestions } from "../Utils/apiInterface";
 
-export const buildQuestionsFragments = async () => {
-	const questionsArray = await getAllQuestions()
+export const buildQuestionsFragments = async (questionsArr) => {
 
 	const questionFragment = new DocumentFragment();
 
-	questionsArray.forEach(question => {
+	questionsArr.forEach(question => {
 		const template = document.createElement('template')
         template.innerHTML = `
         <div class="col-xs col-lg-6">
@@ -36,7 +35,7 @@ export const buildQuestionsFragments = async () => {
 		questionFragment.appendChild(template.content.cloneNode(true));
 	});
 
-	if(questionsArray.length === 0) {
+	if(questionsArr.length === 0) {
 		const template = document.createElement('template')
 		template.innerHTML = `
 		  <article class="container">

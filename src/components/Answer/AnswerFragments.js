@@ -1,17 +1,7 @@
-import {  } from "../Utils/apiInterface";
-import { getAnswers } from "../Utils/apiInterface";
 
-export const buildAnswerFragments = async (qid) => {
-	if(!qid) {
-		return;
-	}
-	const answerFragment = new DocumentFragment();
-
-	const answersObject = await getAnswers(qid);
-
-	const question = answersObject.question;
-
-	const answers = answersObject.answers;
+export const buildQuestionFragment = async (question) => {
+	if(!question) return;
+	const answerDocFrag = new DocumentFragment();
 
 	const template = document.createElement('template');
 
@@ -20,20 +10,26 @@ export const buildAnswerFragments = async (qid) => {
 	  	<div class="card-body">
 		  <h1 class="card-title"> ${question.title} </h1>
 			<span>Posted by  ${question.firstName} ${question.lastName} on 		 
-			 <span class="text-muted"> ${ new Date(question.timeStamp).toLocaleDateString()} </span>
+			<span class="text-muted"> ${ new Date(question.timeStamp).toLocaleDateString()} </span>
 		  </span>
+		  <br/>
 		  <p class="card-text"> ${question.content} </h1>
 		</div>
 	  </article>
 	  <div id="answersContainer" class="list-group">
-
 	  <div>
 	`
-	answerFragment.appendChild(template.content.cloneNode(true));
+	answerDocFrag.appendChild(template.content.cloneNode(true));
 
-	const answerContainer = answerFragment.getElementById("answersContainer");
+	return answerDocFrag;
+}
 
-	answers.forEach(answers => {
+export const buildAnswerFragment = async (answerArray) => {
+	const answerContainerEl = document.getElementById("answersContainer");
+	
+	const answerDocFrag = new DocumentFragment();
+
+	answerArray.forEach(answers => {
 		const tpl = document.createElement('template')
 		tpl.innerHTML = `
 		  <article class="list-group-item ">
@@ -44,9 +40,8 @@ export const buildAnswerFragments = async (qid) => {
 			</div>
 		  </article>
 		`
-		answerContainer.appendChild(tpl.content.cloneNode(true));
+		answerDocFrag.appendChild(tpl.content.cloneNode(true));
 	});
-
-
-	return answerFragment;
+	answerContainerEl.textContent = '';
+	answerContainerEl.appendChild(answerDocFrag)
 }

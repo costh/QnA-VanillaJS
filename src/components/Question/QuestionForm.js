@@ -1,4 +1,5 @@
 import { saveQuestion } from "../Utils/apiInterface";
+import { reRenderQuestions } from "./Question";
 
 export const buildQuestionForm = (questionParent) => {
 	const template = document.createElement('template')
@@ -44,7 +45,7 @@ const questionFormSubmit = async (event) => {
 		formItems['lastName']?.value)
 
 		// Send Toast of sucess
-		// Re-render new element or All?
+		reRenderQuestions();
 		form.reset() // Clear values
 	}catch(e) {
 		console.log(e)

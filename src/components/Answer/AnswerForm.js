@@ -1,4 +1,5 @@
 import { saveAnswer } from "../Utils/apiInterface";
+import Answer, { reRenderAnswers } from "./Answer";
 
 export const buildAnswerForm = (questionId) => {
 	const template = document.createElement('template')
@@ -41,10 +42,10 @@ const answerSubmitForm = async (event) => {
 		formItems['lastName']?.value
 		)
 
-		// Send Toast of sucess
-		// Re-render new element or All?
+		
+		reRenderAnswers(formItems['questionId']?.value);
 		form.reset() // Clear values
 	}catch(e) {
-		console.log(e)
+		console.error(e)
 	}
 }

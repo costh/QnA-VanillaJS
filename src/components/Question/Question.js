@@ -3,17 +3,33 @@ import { buildQuestionForm, attachQuestionFormListener } from "./QuestionForm";
 import { buildQuestionsFragments } from "./QuestionFragments";
 
 const Question = async () => {
-	const questionParent = document.getElementById('main');
+	const mainParentEl = document.getElementById('main');
+	const questionsWrapper = document.createElement('div');
+	questionsWrapper.setAttribute("id", "questionsWrapper");
 
-	if(!questionParent) return; 
+	const questionsArray = await getAllQuestions();
+	
+	if(!mainParentEl) return; 
 
-	const getQuestionFrag = await buildQuestionsFragments();
+	const getQuestionFrag = await buildQuestionsFragments(questionsArray);
 
-	questionParent.appendChild(getQuestionFrag);
-	questionParent.appendChild(buildQuestionForm());
+	questionsWrapper.appendChild(getQuestionFrag);
+	mainParentEl.appendChild(questionsWrapper);
+	mainParentEl.appendChild(buildQuestionForm());
 
 	attachQuestionFormListener();
 
 };
+
+export const reRenderQuestions = async () => {
+ const questionsWrapper = document.getElementById("questionsWrapper");
+ const questionsArray = await getAllQuestions();
+ const getQuestionFrag = await buildQuestionsFragments(questionsArray);
+
+ questionsWrapper.textContent = '';
+
+ questionsWrapper.appendChild(getQuestionFrag);
+
+}
 
 export default Question;
