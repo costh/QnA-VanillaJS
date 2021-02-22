@@ -1,5 +1,3 @@
-import { getAllQuestions } from "../Utils/apiInterface";
-
 export const buildQuestionsFragments = async (questionsArr) => {
 
 	const questionFragment = new DocumentFragment();
@@ -10,23 +8,19 @@ export const buildQuestionsFragments = async (questionsArr) => {
         <div class="col-xs col-lg-6">
             <article class="card">
                 <div class="card-body">
-                        <a class="" href="/question/${question.id}" data-navigo> 
-                            <h1 class="card-title"> 
+                        <a class="text-reset" href="/question/${question.id}" data-navigo> 
+                            <h1 class="card-title display-6"> 
                                 ${question.title}
                             </h1>
                         </a>
-                        <p class="card-text">
+                        <p class="card-text text-truncate">
                             ${question.content} 
                         </p>
-                        <div class="">
-                            <div class="">
-                                ${new Date(question.timeStamp).toLocaleDateString()} 
-                            </div>
-                            <div class="">
-                                <div class="">
-                                    Posted by ${question.firstName} ${question.lastName}
-                                </div>
-                            </div>
+                        <div class="divider">
+                            <div class="d-flex w-80 justify-content-between">
+                                <small class="text-muted"> ${question.firstName} ${question.lastName}</small>
+                                <small class="text-muted">${new Date(question.timeStamp).toLocaleString()}</small>
+                             </div>
                         </div>
                     </div>
             </article>

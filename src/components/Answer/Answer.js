@@ -17,11 +17,9 @@ const Answer = async (qid) => {
 	const getQuestionFrag = await buildQuestionFragment(question);
 
 	answerParent.appendChild(getQuestionFrag);
+	answerParent.appendChild(buildAnswerForm(qid));
 	
 	buildAnswerFragment(answersArr);
-
-	answerParent.appendChild(buildAnswerForm(qid));
-
 	attachAnswerFormListener();
 
 };

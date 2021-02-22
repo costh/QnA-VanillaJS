@@ -6,19 +6,21 @@ import Answer from './components/Answer/Answer';
 
 
 const router = new Navigo("/");
-App();
 
-router.on("/question/:id", (match) => {
+
+router.on("/question/:id", async (match) => {
   const id = match?.data?.id;
   if(id){
+    await App();
     Answer(id);
   }else{
     router.navigate('/');
   }
 });
 
-router.on('*', (match) => {
+router.on('*',async () => {
   router.navigate('/');
+  await App();
   Question();
 })
 

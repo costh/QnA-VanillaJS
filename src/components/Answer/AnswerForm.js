@@ -42,7 +42,6 @@ const answerSubmitForm = async (event) => {
 		formItems['lastName']?.value
 		)
 
-		
 		reRenderAnswers(formItems['questionId']?.value);
 		form.reset() // Clear values
 	}catch(e) {

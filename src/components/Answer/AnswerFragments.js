@@ -8,12 +8,13 @@ export const buildQuestionFragment = async (question) => {
 	template.innerHTML = `
 	  <article class="card">
 	  	<div class="card-body">
-		  <h1 class="card-title"> ${question.title} </h1>
-			<span>Posted by  ${question.firstName} ${question.lastName} on 		 
-			<span class="text-muted"> ${ new Date(question.timeStamp).toLocaleDateString()} </span>
-		  </span>
-		  <br/>
-		  <p class="card-text"> ${question.content} </h1>
+			<h1 class="card-title"> ${question.title} </h1>
+			  
+			<div class="d-flex w-80">
+		 	 <span> ${question.firstName} ${question.lastName}, <small class="text-muted">${new Date(question.timeStamp).toLocaleString() }</small> </span>
+			</div>
+
+		   <p class="card-text pt-4"> ${question.content} </p>
 		</div>
 	  </article>
 	  <div id="answersContainer" class="list-group">
