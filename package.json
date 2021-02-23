@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run clean && parcel public/index.html --out-dir development -p 3000",
-    "build": "rimraf ./QnA-VanillaJS/ && parcel build public/*.html --out-dir ./QnA-VanillaJS/ --public-url ./",
-    "clean": "rimraf ./development && rimraf ./.cache && rimraf ./QnA-VanillaJS/",
+    "build": "rimraf ./dist && parcel build public/*.html --out-dir dist --public-url ./",
+    "clean": "rimraf ./development && rimraf ./.cache && rimraf dist",
     "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
   },
   "keywords": [
