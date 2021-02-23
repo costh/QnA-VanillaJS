@@ -1,13 +1,14 @@
 {
   "name": "",
-  "homepage":"/QnA-VanillaJS/",
+  "homepage": "/QnA-VanillaJS/",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "npm run clean && parcel public/index.html --out-dir development -p 3000",
-    "build": "rimraf ./dist && parcel build public/*.html --out-dir dist --public-url ./",
-    "clean": "rimraf ./development && rimraf ./.cache"
+    "build": "rimraf ./QnA-VanillaJS/ && parcel build public/*.html --out-dir ./QnA-VanillaJS/ --public-url ./",
+    "clean": "rimraf ./development && rimraf ./.cache && rimraf ./QnA-VanillaJS/",
+    "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
   },
   "keywords": [
     "parcel"
@@ -32,6 +33,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "dexie": "^3.0.3",
-    "navigo": "^8.8.12"
+    "navigo": "^8.8.12",
+    "execa": "latest"
   }
 }
