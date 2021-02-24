@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "npm run clean && parcel public/index.html --out-dir development -p 3000",
     "build": "rimraf ./dist && parcel build public/*.html --out-dir dist --public-url ./",
-    "build:prod": "rimraf ./dist && parcel build public/*.html --out-dir dist --public-url https://costh.github.io/QnA-VanillaJS/",
     "clean": "rimraf ./development && rimraf ./.cache && rimraf dist",
     "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
   },
