@@ -8,7 +8,7 @@ export const buildQuestionsFragments = async (questionsArr) => {
         <div class="col-xs col-lg-6">
             <article class="card">
                 <div class="card-body">
-                        <a class="text-reset" href="/question/${question.id}" data-navigo> 
+                        <a class="text-reset" href="${process.env.BASE_ABSOLUTE_PUBLIC || '/'}question/${question.id}" data-navigo> 
                             <h1 class="card-title display-6"> 
                                 ${question.title}
                             </h1>
