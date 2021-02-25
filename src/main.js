@@ -4,7 +4,7 @@ import Navigo from "navigo";
 import Question from './components/Question/Question';
 import Answer from './components/Answer/Answer';
 
-const BASE_URL = (`${process.env.BASE_PUBLIC}` || '/');
+export const BASE_URL = (`${process.env.BASE_PUBLIC}` || '/');
 
 const router = new Navigo(BASE_URL);
 
