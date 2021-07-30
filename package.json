@@ -1,13 +1,12 @@
 {
-  "homepage": "https://costh.github.io/QnA-VanillaJS/",
+  "name": "",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "npm run clean && parcel public/index.html --out-dir development -p 3000",
-    "build": "rimraf ./dist && parcel build public/*.html --out-dir dist --public-url /QnA-VanillaJS/",
-    "clean": "rimraf ./development && rimraf ./.cache && rimraf dist",
-    "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
+    "build": "rimraf ./dist && parcel build public/*.html --out-dir dist --public-url ./",
+    "clean": "rimraf ./development && rimraf ./.cache"
   },
   "keywords": [
     "parcel"
@@ -26,14 +25,12 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/runtime-corejs2": "^7.9.2",
     "parcel-bundler": "^1.12.4",
-    "posthtml-expressions": "^1.7.1",
     "rimraf": "^3.0.2",
     "sass": "^1.26.3"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "dexie": "^3.0.3",
-    "navigo": "^8.8.12",
-    "execa": "latest"
+    "navigo": "^8.8.12"
   }
 }

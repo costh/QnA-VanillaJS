@@ -4,9 +4,9 @@ import Navigo from "navigo";
 import Question from './components/Question/Question';
 import Answer from './components/Answer/Answer';
 
-export const BASE_URL = (`${process.env.BASE_PUBLIC}` || '/');
 
-const router = new Navigo(BASE_URL);
+const router = new Navigo("/");
+
 
 router.on("/question/:id", async (match) => {
   const id = match?.data?.id;
@@ -14,12 +14,12 @@ router.on("/question/:id", async (match) => {
     await App();
     Answer(id);
   }else{
-    router.navigate(BASE_URL);
+    router.navigate('/');
   }
 });
 
 router.on('*',async () => {
-  router.navigate(BASE_URL);
+  router.navigate('/');
   await App();
   Question();
 })
